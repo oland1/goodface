@@ -1,0 +1,1 @@
+export { IPAmount } from "./ui/IPAmount";

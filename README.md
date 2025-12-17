@@ -1,36 +1,58 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+#### 1 - Як би ви організували компоненти (структура, підхід до повторного використання)
 
-## Getting Started
+* Використання FSD
+* Компоненти повинні бути максимально ізольованими
+* Окремо логіка (api, model, lib) і окремо UI (ui)
+* Створення бібліотеки спільних компонентів для повторного використання
 
-First, run the development server:
+#### 2 - Як би реалізували роботу з API в масштабному проєкті
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+* У FSD я ізолюю роботу з API в окремий шар.
+* shared/api.
+* entities/*/api - запити під конкретні сутності.
+* features і widgets лише викликають готові методи і не знають деталей API.
+* UI не працює напряму з API. Уся логіка доступу до даних винесена в FSD-шари й централізована.
+* Запити - через React Query / RTK Query
+* Кешування, рефетчинг - централізовано
+* Пагінація, фільтри, пошук - як окремі query
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+#### 3 - Як масштабували б сторінки, функціональність, нові блоки
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+* Масштабування через FSD, а не через зростання окремих компонентів
+* Сторінки це композиція widgets і features, без бізнес-логіки
+* Нова функціональність додається як окремий feature, без змін існуючих
+* Нові блоки UI як widgets, з чіткими межами відповідальності
+* Повторне використання через entities і shared
+* Бізнес-логіка не дублюється, а перевикористовується через model / lib
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+#### 4 - Основні ризики у фронтенд-частині
 
-## Learn More
+* Потрапляння бізнес-логіки в UI, що призводить до перевантажених і складних компонентів
+* Порушення FSD з часом: дублювання логіки та прямі імпорти між шарами
+* Неконтрольований стан і сайд-ефекти: зайві запити, дублювання логіки
+* Деградація продуктивності: зайві ререндери, відсутність кешування, неоптимізовані запити
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+#### Коментарі до виконаного завдання
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+* Іменування та структура компонентів
+  Назви компонентів і їх розташування можна було б зробити більш осмисленими за наявності чіткого розуміння майбутнього
+  повторного використання та зони відповідальності кожного компонента. У поточному вигляді структура орієнтована на межі
+  самого завдання.
+* Дизайн / Mobile view
+    * З точки зору масштабування коректніше визначати поточний режим відображення через розмір вікна (наприклад,
+      кастомний `useViewMode` хук) і рендерити відповідні компоненти, а не просто приховувати їх через стилі.
+    * У мобільній версії я свідомо не змінювала всі шрифти, відступи та розміри, оскільки це потребує додаткового часу.
+      При цьому сам підхід до адаптації стилів показаний на прикладі хедера та сайдбара.
+* Pixel Perfect
+  У більшості випадків відповідність макету дотримана. Водночас, з огляду на великий обсяг різних компонентів,
+  окремі незначні розбіжності з дизайном могли бути пропущені.
+* Іконки
+  Для спрощення реалізації використано `next/image`. Я усвідомлюю, що такий підхід обмежує гнучкість - іконки не можна
+  перефарбовувати. Альтернативні рішення - SVG як React-компоненти з `currentColor`, окремі набори іконок або інша
+  стратегія - залежать від вимог проєкту. Поточна реалізація обрана свідомо як найпростіша, з розумінням її обмежень.
+* Загалом, завдання виконано з урахуванням основних принципів організації коду та масштабування фронтенд-додатків. Але
+  при цьому є можливості для подальшого вдосконалення структури, іменування та адаптації під реальні вимоги проєкту.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+#### Оскільки це тестове завдання з обмеженим таймінгом, я зосередилася на архітектурній структурі та ключовому функціоналі, свідомо опустивши другорядні деталі, які не впливають на загальну концепцію рішення.

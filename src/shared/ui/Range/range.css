@@ -1,0 +1,21 @@
+@layer components {
+  .range-input::-webkit-slider-thumb {
+    appearance: none;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+    border: 2px solid var(--color-brand-500);
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(85, 71, 235, 0.2);
+    background-image: radial-gradient(var(--color-brand-100) 1.5px, transparent 1.5px);
+    background-size: 6px 6px;
+    background-position: center;
+    background-repeat: space;
+    cursor: grab;
+    margin-top: 0;
+  }
+
+  .range-input:focus {
+    outline: none;
+  }
+}
