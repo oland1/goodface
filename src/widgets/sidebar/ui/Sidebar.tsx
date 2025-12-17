@@ -5,7 +5,7 @@ import Image from "next/image";
 
 export const Sidebar = () => {
   return (
-    <aside className="flex bg-white h-screen">
+    <aside className="flex bg-white h-screen overflow-y-auto">
       <div className="w-[280px] border-r border-gray-200 flex flex-col">
         <SidebarHeader />
 

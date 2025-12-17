@@ -17,13 +17,13 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en">
-    <body className={`${groteskSans.variable} font-sans antialiased`}>
+    <body className={`${groteskSans.variable} font-sans antialiased overflow-hidden`}>
     <div className="flex flex-col lg:flex-row">
       <MobileHeader />
       <div className="hidden lg:flex">
         <Sidebar />
       </div>
-      <main className="lg:h-screen overflow-y-auto">
+      <main className="w-full lg:h-screen overflow-y-auto">
         {children}
       </main>
     </div>
