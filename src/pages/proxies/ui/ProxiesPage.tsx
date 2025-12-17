@@ -3,7 +3,7 @@ import { DatacenterProxies } from "@/widgets/datacenter-proxies";
 import { OrderSummary } from "@/widgets/order-summary";
 import { Button } from "@/shared/ui/Button";
 
-// Кнопка Back to all - просто як приклад. Потрібно розуміти більше про навігацію в додатку. Імовірно, її треба буде винести в окремий компонент. 
+// Кнопка Back to all - просто як приклад. Потрібно розуміти більше про навігацію в додатку. Імовірно, її треба буде винести в окремий компонент.
 export const ProxiesPage = () => {
   return (
     <div className="flex flex-col px-4 lg:px-12 py-6 gap-6">
@@ -25,3 +25,4 @@ export const ProxiesPage = () => {
     </div>
   );
 };
+export default ProxiesPage;
