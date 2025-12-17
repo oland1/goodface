@@ -1,1 +1,1 @@
-export { ProxiesPage } from "./ui/ProxiesPage";
+export { ProxiesPage as default } from "./ui/ProxiesPage";
