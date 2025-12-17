@@ -17,7 +17,7 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode; }>) {
   return (
     <html lang="en">
-    <body className={`${groteskSans.variable} font-sans antialiased overflow-hidden`}>
+    <body className={`${groteskSans.variable} font-sans antialiased lg:overflow-hidden`}>
     <div className="flex flex-col lg:flex-row">
       <MobileHeader />
       <div className="hidden lg:flex">
