@@ -29,7 +29,7 @@ export const Select = <T extends SelectItem>(props: SelectProps<T>) => {
 
   return (
     <div className="relative flex flex-col gap-2 w-full" ref={dropdownRef}>
-      <label className="text-sm text-gray-800" htmlFor={selectId}>{label}</label>
+      <label className="text-body1 text-gray-800" htmlFor={selectId}>{label}</label>
 
       <div
         id={selectId}

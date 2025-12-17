@@ -37,7 +37,7 @@ export const OrderDetails = () => {
 
       <div className="border-t border-gray-200 flex justify-between items-center pt-4">
         <span className="text-subtitle2 text-gray-700">Total</span>
-        <span className="text-h4 text-gray-800">$140</span>
+        <span className="text-h4 text-gray-800">$140.00</span>
       </div>
     </div>
   );
